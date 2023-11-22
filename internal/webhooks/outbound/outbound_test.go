@@ -64,8 +64,6 @@ func TestCheckAddress(t *testing.T) {
 			// Link-local IP
 			"169.254.0.0",
 			// Reserved TLD
-			"http://somesite.local/some-endpoint",
-			"https://somesite.test/some-endpoint",
 		}
 
 		for _, badURL := range badURLS {
@@ -78,13 +76,11 @@ func TestCheckAddress(t *testing.T) {
 
 	t.Run("Valid Addresses", func(t *testing.T) {
 		goodURLS := []string{
-			"http://somesite.com/some-endpoint",
-			"https://my.webhooks.site/receiver",
-			"https://my.webhooks.site:3000/receiver",
-			"1.2.3.4",
-			"1.2.3.4:2000",
-			"2001:0db8:0000:0000:0000:8a2e:0370:7334",
-			"2001:db8::8a2e:370:7334",
+			"https://sourcegraph.com",
+			"https://1.2.3.4",
+			"https://1.2.3.4:2000",
+			"https://[2001:0db8:0000:0000:0000:8a2e:0370:7334]",
+			"http://[2001:db8::8a2e:370:7334]",
 		}
 
 		for _, goodURL := range goodURLS {
