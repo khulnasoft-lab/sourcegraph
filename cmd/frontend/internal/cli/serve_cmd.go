@@ -91,6 +91,8 @@ type SetupFunc func(database.DB, conftypes.UnifiedWatchable) enterprise.Services
 func Main(ctx context.Context, observationCtx *observation.Context, ready service.ReadyFunc, enterpriseSetupHook SetupFunc, enterpriseMigratorHook store.RegisterMigratorsUsingConfAndStoreFactoryFunc) error {
 	logger := observationCtx.Logger
 
+	// TODO (wbg): Here we need to initialize a database validation check that isn't wrapped inside the `up` command from the migrators initContainer
+
 	if err := tryAutoUpgrade(ctx, observationCtx, ready, enterpriseMigratorHook); err != nil {
 		return errors.Wrap(err, "frontend.tryAutoUpgrade")
 	}
